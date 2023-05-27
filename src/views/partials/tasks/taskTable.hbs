@@ -1,0 +1,81 @@
+{{#if tasks}}
+  <div class="table-responsive">
+    <table class="table table-lg table-hover table-dark table-responsive">
+      <caption class="table-group-divider">Lista de tareas</caption>
+      <thead class="text-center">
+        <tr>
+          <th scope="col">N°</th>
+          <th scope="col" class="w-25">Título</th>
+          <th scope="col">Descripción</th>
+          <th scope="col" class="w-25">Operaciones</th>
+        </tr>
+      </thead>
+      <tbody class="table-light align-middle">
+        {{#each tasks}}
+          <tr class="">
+            <td class="text-center">{{incIndex @index}}</td>
+            <td>{{title}}</td>
+            <td>{{description}}</td>
+            <td>
+              <div class="d-flex gap-1 justify-content-center">
+                {{#if done}}
+                  <a
+                    href="/tasks/{{_id}}/toggleDone"
+                    class="btn btn-outline-dark"
+                  >Pendiente</a>
+                {{else}}
+                  <a
+                    href="/tasks/{{_id}}/toggleDone"
+                    class="btn btn-outline-success"
+                  >Hecho</a>
+                {{/if}}
+                <a
+                  href="/tasks/{{_id}}/edit"
+                  class="btn btn-outline-warning"
+                >Editar</a>
+                <a
+                  href="/tasks/{{_id}}/delete"
+                  class="btn btn-outline-danger"
+                >Borrar</a>
+              </div>
+            </td>
+
+          </tr>
+
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+
+{{else}}
+  <div class="table-responsive">
+    <table class="table table-lg table-hover table-dark table-responsive">
+      <thead class="text-center">
+        <tr>
+          <th scope="col">N°</th>
+          <th scope="col" class="w-25">Título</th>
+          <th scope="col">Descripción</th>
+          <th scope="col" class="w-25">Operaciones</th>
+        </tr>
+      </thead>
+      <tbody class="table-light align-middle">
+        <tr class="">
+          <td class="text-center" colspan="4">No hay tareas.
+            <br />
+            <div class="h-100 d-flex align-items-center justify-content-center">
+              <img src="/icons/checklist.png" class="img-fluid w-25" />
+
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    {{! <a
+      href="https://www.flaticon.com/free-icons/checklist"
+      title="checklist icons"
+    >Checklist icons created by Royyan Wijaya - Flaticon</a> }}
+  </div>
+
+{{/if}}
