@@ -11,6 +11,14 @@ export const createTask = async (req, res) => {
   try {
     const task = Task(req.body);
 
+    const taskFound = await Task.findOne({
+      title: task.title
+    }).lean();
+
+    if (taskFound) {
+      return res.redirect("/");
+    }
+
     await task.save();
 
     res.redirect("/");
